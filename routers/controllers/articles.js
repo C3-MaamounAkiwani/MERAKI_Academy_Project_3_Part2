@@ -31,5 +31,25 @@ const createNewArticle = (req, res) => {
         });
 };
 
+const getAllArticles = (req, res) => {
+    articles.find({})
+        .then((articles) => {
+            const allArticles = {
+                success: true,
+                message: 'all the articles',
+                articles
+            }
+            res.status(200);
+            res.json(allArticles);
+        })
+        .catch((err) => {
+            const error = {
+                success: false,
+                message: "server error"
+            }
+            res.status(500);
+        });
 
+
+}
 module.exports = { createNewArticle, getAllArticles };
