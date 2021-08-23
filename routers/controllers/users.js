@@ -21,7 +21,7 @@ const createNewAuthor = (req, res) => {
                 message: "Success Author Added",
                 author
             }
-            res.status(201);
+            res.status(200);
             res.json(sussessAdded);
         })
         .catch((err) => {
@@ -29,6 +29,7 @@ const createNewAuthor = (req, res) => {
                 success: false,
                 message: "The email already exists",
             }
+            res.status(409);
             res.json(errorAdded);
         });
 };

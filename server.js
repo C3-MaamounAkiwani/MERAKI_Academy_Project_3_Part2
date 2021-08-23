@@ -1,12 +1,16 @@
 const express = require("express");
-const todoModel = require("./db/models/users");
+const users = require("./db/models/users");
+const article = require("./db/models/articles");
 const db = require("./db/db");
 const userRouter = require('./routers/routes/users');
+const articleRouter = require('./routers/routes/articles');
+
 
 const app = express();
 app.use(express.json());
 
 app.use('/', userRouter);
+app.use('/', articleRouter);
 
 
 const port = 3000;
