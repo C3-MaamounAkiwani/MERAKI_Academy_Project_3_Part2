@@ -5,7 +5,8 @@ const {
     getArticlesByAuthor,
     getAnArticleById,
     updateAnArticleById,
-    deleteArticleById
+    deleteArticleById,
+    deleteArticlesByAuthor
 } = require('../controllers/articles');
 
 const articlesRouter = express.Router();
@@ -15,6 +16,8 @@ articlesRouter.get("/articles", getAllArticles);
 articlesRouter.get("/articles/search_1", getArticlesByAuthor);
 articlesRouter.get("/articles/search_2", getAnArticleById);
 articlesRouter.put("/articles/:id", updateAnArticleById)
+articlesRouter.delete("/articles/:id", deleteArticleById);
+articlesRouter.delete("/articles", deleteArticlesByAuthor);
 
 
 

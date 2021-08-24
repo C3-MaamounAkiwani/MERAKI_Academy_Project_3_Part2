@@ -56,7 +56,7 @@ const getAllArticles = (req, res) => {
 
 
 const getArticlesByAuthor = (req, res) => {
-    articles.find({ author: req.query.author })
+    articles.find({ author: req.query.author }).exec()
 
     .then((result) => {
             const viewAllArticles = {
@@ -121,4 +121,49 @@ const updateAnArticleById = (req, res) => {
 }
 
 
-module.exports = { createNewArticle, getAllArticles, getArticlesByAuthor, getAnArticleById, updateAnArticleById };
+const deleteArticleById = (req, res) => {
+    idDelete = req.params.id;
+    articles.findByIdAndDelete({ _id: idDelete })
+        .then((deleteRcord) => {
+            const msgDeleted = {
+                success: true,
+                message: `Success Delete Artical With id => ${idDelete}`
+            }
+            res.status(200);
+            res.json(msgDeleted)
+        }).catch((err) => {
+            const filedDelete = {
+                success: false,
+                message: `The Artical ${idDelete} is not found`
+            }
+            res.status(404);
+            res.json(filedDelete);
+        })
+
+}
+
+const deleteArticlesByAuthor = (req, res) => {
+    authorDelete = req.body.author;
+    articles.where({ author: authorDelete }).deleteOne(authorDelete).exec()
+        .then((results) => {
+            const deleteByAuthorsussess = {
+                sussess: true,
+                message: `Sussess Delete articles for the author =>`,
+                results: results
+            }
+            res.status(200);
+            res.json(deleteByAuthorsussess);
+        }).catch((err) => {
+            const fildeDeleteByAuthor = {
+                sussess: false,
+                message: `The Author is not Found`
+            }
+            res.status(404);
+            res.json(fildeDeleteByAuthor);
+
+        })
+}
+
+
+
+module.exports = { createNewArticle, getAllArticles, getArticlesByAuthor, getAnArticleById, updateAnArticleById, deleteArticleById, deleteArticlesByAuthor };
