@@ -79,6 +79,28 @@ const getArticlesByAuthor = (req, res) => {
 
 }
 
+const getAnArticleById = (req, res) => {
+    id = req.query.id;
+    articles.find({ _id: id }).populate("author", "firstName , -_id").exec()
+        .then((result) => {
+            const findById = {
+                sussess: true,
+                message: `The articals  ${id} =>`,
+                articals: result
+            }
+            res.status(200);
+            res.json(findById);
+        })
+        .catch((err) => {
+            const notFoundId = {
+                sussess: false,
+                message: `The articals ${id} Not Found`
+            }
+            res.status(500);
+            res.json(notFoundId);
+        })
+
+}
 
 const updateAnArticleById = (req, res) => {
 
@@ -98,4 +120,25 @@ const updateAnArticleById = (req, res) => {
         })
 }
 
-module.exports = { createNewArticle, getAllArticles, getArticlesByAuthor, updateAnArticleById };
+
+const deleteArticleById = (req, res) => {
+    id = req.params.id;
+    articles.where({ _id: id }).deleteOne(id).exec()
+        .then((deleteRcord) => {
+            const msgDeleted = {
+                success: true,
+                message: `Success Delete Artical With id => ${id}`
+            }
+            res.status(200);
+            res.json(deleteRcord)
+        }).catch((err) => {
+            const filedDelete = {
+                success: false,
+                message: `The Artical ${id} is not found`
+            }
+            res.status(404);
+            res.json(filedDelete);
+        })
+
+}
+module.exports = { createNewArticle, getAllArticles, getArticlesByAuthor, getAnArticleById, updateAnArticleById, deleteArticleById };
