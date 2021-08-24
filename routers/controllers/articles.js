@@ -79,4 +79,23 @@ const getArticlesByAuthor = (req, res) => {
 
 }
 
-module.exports = { createNewArticle, getAllArticles, getArticlesByAuthor, getAnArticleById };
+
+const updateAnArticleById = (req, res) => {
+
+    id = req.params.id;
+    const { title, description } = req.body;
+    articles.where({ _id: id }).updateOne({ title, description }).exec().then(
+            (result) => {
+                const sussessUpdate = {
+                    success: true,
+                    message: `Success articals updated`,
+                    articals: result
+                }
+                res.json(sussessUpdate);
+            })
+        .catch((err) => {
+            res.json(err);
+        })
+}
+
+module.exports = { createNewArticle, getAllArticles, getArticlesByAuthor, updateAnArticleById };
