@@ -37,7 +37,7 @@ const getAllArticles = (req, res) => {
             const allArticles = {
                 success: true,
                 message: 'all the articles',
-                articles
+                articles: articles
             }
             res.status(200);
             res.json(allArticles);
@@ -48,8 +48,35 @@ const getAllArticles = (req, res) => {
                 message: "server error"
             }
             res.status(500);
+            res.json(error);
         });
 
 
 }
-module.exports = { createNewArticle, getAllArticles };
+
+
+const getArticlesByAuthor = (req, res) => {
+    articles.find({ author: req.query.author })
+
+    .then((result) => {
+            const viewAllArticles = {
+                sussess: true,
+                message: `all the articles for the author ${req.query.author}  =>`,
+                articals: result
+            }
+            res.status(200);
+            res.json(viewAllArticles);
+        })
+        .catch((err) => {
+            const notFound = {
+                sussess: false,
+                message: `The Author ${req.query.author} Not Found`
+            }
+
+            res.status(500);
+            res.json(notFound);
+        })
+
+}
+
+module.exports = { createNewArticle, getAllArticles, getArticlesByAuthor, getAnArticleById };

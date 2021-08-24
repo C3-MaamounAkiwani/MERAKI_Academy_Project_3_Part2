@@ -4,6 +4,7 @@ const article = require("./db/models/articles");
 const db = require("./db/db");
 const userRouter = require('./routers/routes/users');
 const articleRouter = require('./routers/routes/articles');
+const { application } = require("express");
 
 
 const app = express();
@@ -12,7 +13,7 @@ app.use(express.json());
 app.use('/', userRouter);
 app.use('/', articleRouter);
 app.use('/', articleRouter);
-
+app.use('/search_1/:author', articleRouter);
 
 const port = 3000;
 app.listen(port, () => {

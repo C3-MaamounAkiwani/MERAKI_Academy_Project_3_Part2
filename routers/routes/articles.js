@@ -2,16 +2,12 @@ const express = require("express");
 const {
     createNewArticle,
     getAllArticles,
-    updateTodo,
-    deleteTodo
+    getArticlesByAuthor,
 } = require('../controllers/articles');
 
 const articlesRouter = express.Router();
 
 articlesRouter.post("/articles", createNewArticle);
 articlesRouter.get("/articles", getAllArticles);
-//todoRouter.post("/create/todo", createTodo);
-//todoRouter.put("/update/todo", updateTodo);
-//todoRouter.delete("/delete/todo", deleteTodo);
-
+articlesRouter.get("/articles/search_1", getArticlesByAuthor);
 module.exports = articlesRouter;
