@@ -72,7 +72,6 @@ const getArticlesByAuthor = (req, res) => {
                 sussess: false,
                 message: `The Author ${req.query.author} Not Found`
             }
-
             res.status(500);
             res.json(notFound);
         })
@@ -105,6 +104,8 @@ const getAnArticleById = (req, res) => {
 const updateAnArticleById = (req, res) => {
 
     id = req.params.id;
+
+    /// Find by id and update
     const { title, description } = req.body;
     articles.where({ _id: id }).updateOne({ title, description }).exec().then(
             (result) => {
@@ -144,7 +145,7 @@ const deleteArticleById = (req, res) => {
 
 const deleteArticlesByAuthor = (req, res) => {
     authorDelete = req.body.author;
-    articles.where({ author: authorDelete }).deleteOne(authorDelete).exec()
+    articles.findOneAndDelete({ author: authorDelete })
         .then((results) => {
             const deleteByAuthorsussess = {
                 sussess: true,
@@ -163,7 +164,5 @@ const deleteArticlesByAuthor = (req, res) => {
 
         })
 }
-
-
 
 module.exports = { createNewArticle, getAllArticles, getArticlesByAuthor, getAnArticleById, updateAnArticleById, deleteArticleById, deleteArticlesByAuthor };

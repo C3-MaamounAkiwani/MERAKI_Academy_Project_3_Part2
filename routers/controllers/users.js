@@ -34,4 +34,30 @@ const createNewAuthor = (req, res) => {
         });
 };
 
-module.exports = { createNewAuthor };
+const login = function(req, res) {
+    useremail = req.body.email;
+    userpassword = req.body.password;
+    users.findOne({ email: useremail, password: userpassword })
+        .then((result) => {
+            ///  console.log(result);
+            if (result) {
+                const valid = {
+                    success: true,
+                    message: `valid login credentials`
+                }
+                res.status(200);
+                res.json(valid);
+            } else {
+                const Invalid = {
+                    success: false,
+                    message: `Invalid login credentials`
+                }
+                res.status(404);
+                res.json(Invalid);
+            }
+        })
+        .catch((error) => {
+            throw error;
+        })
+}
+module.exports = { createNewAuthor, login };

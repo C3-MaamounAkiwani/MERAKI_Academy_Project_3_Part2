@@ -1,16 +1,12 @@
 const express = require("express");
 const {
     createNewAuthor,
-    createTodo,
-    updateTodo,
-    deleteTodo
+    login
 } = require('../controllers/users');
 
 const userRouter = express.Router();
 
 userRouter.post("/users", createNewAuthor);
-//todoRouter.post("/create/todo", createTodo);
-//todoRouter.put("/update/todo", updateTodo);
-//todoRouter.delete("/delete/todo", deleteTodo);
+userRouter.post("/login", login);
 
 module.exports = userRouter;
