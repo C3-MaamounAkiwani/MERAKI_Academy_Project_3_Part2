@@ -121,24 +121,4 @@ const updateAnArticleById = (req, res) => {
 }
 
 
-const deleteArticleById = (req, res) => {
-    id = req.params.id;
-    articles.where({ _id: id }).deleteOne(id).exec()
-        .then((deleteRcord) => {
-            const msgDeleted = {
-                success: true,
-                message: `Success Delete Artical With id => ${id}`
-            }
-            res.status(200);
-            res.json(deleteRcord)
-        }).catch((err) => {
-            const filedDelete = {
-                success: false,
-                message: `The Artical ${id} is not found`
-            }
-            res.status(404);
-            res.json(filedDelete);
-        })
-
-}
-module.exports = { createNewArticle, getAllArticles, getArticlesByAuthor, getAnArticleById, updateAnArticleById, deleteArticleById };
+module.exports = { createNewArticle, getAllArticles, getArticlesByAuthor, getAnArticleById, updateAnArticleById };

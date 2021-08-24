@@ -14,7 +14,6 @@ app.use('/', articleRouter);
 app.use('/search_1/:author', articleRouter);
 app.use('/search_2/:id', articleRouter);
 app.use('/', articleRouter);
-app.use('/', articleRouter);
 
 const port = 3000;
 app.listen(port, () => {
