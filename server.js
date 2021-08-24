@@ -16,8 +16,6 @@ app.use('/search_2/:id', articleRouter);
 app.use('/', articleRouter);
 app.use('/', articleRouter);
 
-
-
 const port = 3000;
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
