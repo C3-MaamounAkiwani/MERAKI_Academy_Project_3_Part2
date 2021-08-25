@@ -112,7 +112,6 @@ const updateAnArticleById = (req, res) => {
                 const sussessUpdate = {
                     success: true,
                     message: `Success articals updated`,
-                    articals: result
                 }
                 res.json(sussessUpdate);
             })
@@ -120,6 +119,8 @@ const updateAnArticleById = (req, res) => {
             res.json(err);
         })
 }
+
+
 
 
 const deleteArticleById = (req, res) => {

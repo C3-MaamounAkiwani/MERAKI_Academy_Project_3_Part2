@@ -14,9 +14,6 @@ app.use(express.json());
 
 app.use('/', userRouter);
 app.use('/', articleRouter);
-
-
-
 app.use('/login', userRouter);
 
 const port = 3000;
