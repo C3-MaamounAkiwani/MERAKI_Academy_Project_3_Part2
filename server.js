@@ -5,7 +5,6 @@ const commit = require("./db/models/comments");
 const db = require("./db/db");
 const userRouter = require('./routers/routes/users');
 const articleRouter = require('./routers/routes/articles');
-const commentsRouter = require('./routers/routes/comments')
 const { application } = require("express");
 
 const app = express();

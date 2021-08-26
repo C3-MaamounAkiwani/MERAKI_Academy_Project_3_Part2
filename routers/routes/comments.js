@@ -1,7 +1,6 @@
-/***
- * 
- * const express = require("express");
-//const comments = require("../../db/models/comments");
+/*
+const express = require("express");
+const comments = require("../../db/models/comments");
 const {
     createNewComment
 } = require('../controllers/comments');

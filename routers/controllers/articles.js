@@ -104,8 +104,6 @@ const getAnArticleById = (req, res) => {
 const updateAnArticleById = (req, res) => {
 
     id = req.params.id;
-
-    /// Find by id and update
     const { title, description } = req.body;
     articles.where({ _id: id }).updateOne({ title, description }).exec().then(
             (result) => {

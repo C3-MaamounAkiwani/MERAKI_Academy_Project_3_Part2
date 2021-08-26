@@ -1,28 +1,24 @@
-/**
- * const comment = require("../../db/models/comments");
+const commentModel = require("../../db/models/comments");
 
 const createNewComment = (req, res) => {
 
-    const { comment, commenter } = req.body;
+    const { comments, commenter } = req.body;
 
-    const newCom = new comment({
-        comment,
+    const newCom = new commentModel({
+        comments,
         commenter,
     });
     newCom
         .save()
         .then((com) => {
-            const sussessAdded = {
-                success: true,
-                message: "the new comment added"
-            }
             res.status(201);
-            res.json(sussessAdded);
+            res.json(com);
+
         })
         .catch((err) => {
             const errorAdded = {
                 success: false,
-                message: "server error"
+                message: "somthing went wrong while createing new comment"
             }
             res.status(500);
             res.json(errorAdded);
@@ -31,5 +27,4 @@ const createNewComment = (req, res) => {
 };
 
 
-module.exports = { createNewComment };
- */
+module.exports = createNewComment;
